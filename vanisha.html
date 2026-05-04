@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Vanisha</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ff9ec4, #ffd6e0);
+    }
+
+    /* animated floating hearts & teddy */
+    .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    .bg span {
+        position: absolute;
+        font-size: 30px;
+        animation: float 10s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) scale(0.8);
+        }
+        100% {
+            transform: translateY(-10vh) scale(1.2);
+        }
+    }
+
+    .container {
+        text-align: center;
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 2;
+    }
+
+    .main-title {
+        font-size: 38px;
+        font-weight: bold;
+        color: #ff4d6d;
+        margin-bottom: 10px;
+    }
+
+    .sub-text {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        margin: 10px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #yesBtn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #yesBtn:hover {
+        transform: scale(1.1);
+    }
+
+    #noBtn {
+        background-color: #f44336;
+        color: white;
+        position: absolute;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="bg" id="bg"></div>
+
+<div class="container" id="main">
+    <div class="main-title">I am sorry Vanisha</div>
+    <div class="sub-text">
+        I really like talking to you, spending time with you.<br>
+        Do you accept my apology?
+    </div>
+    <button class="btn" id="yesBtn">Yes</button>
+    <button class="btn" id="noBtn">No</button>
+</div>
+
+<div class="container hidden" id="thankYou">
+    <div class="main-title">Thank You Vanisha ❤️</div>
+    <div class="sub-text">
+        I will always try to keep you happy and be the man you always wanted.
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const main = document.getElementById("main");
+    const thankYou = document.getElementById("thankYou");
+    const bg = document.getElementById("bg");
+
+    // create floating hearts & teddy
+    const icons = ["❤️","🧸"];
+    for (let i = 0; i < 30; i++) {
+        const span = document.createElement("span");
+        span.innerText = icons[Math.floor(Math.random() * icons.length)];
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.animationDuration = (5 + Math.random() * 5) + "s";
+        span.style.fontSize = (20 + Math.random() * 30) + "px";
+        bg.appendChild(span);
+    }
+
+    function moveButton() {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 60);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("click", moveButton);
+
+    yesBtn.addEventListener("click", () => {
+        main.classList.add("hidden");
+        thankYou.classList.remove("hidden");
+    });
+</script>
+
+</body>
+</html>
